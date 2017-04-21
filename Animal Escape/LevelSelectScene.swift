@@ -35,9 +35,9 @@ class LevelSelectScene: SKScene
             for columns in 1...3
             {
                 makeLevelNode(xPoint: xPosition, yPoint: yPosition, levelWidth: levelWidth, levelHeight: levelHeight, levelNumber: levelNumber)
+                
                 xPosition += (levelWidth + 25)
                 levelNumber += 1
-                
                 
             }
             xPosition = screenEdge + levelEdge + 50
@@ -57,11 +57,19 @@ class LevelSelectScene: SKScene
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        //if touch in level one {
-        let newScene = Level1Scene(size: self.size)
-        newScene.scaleMode = scaleMode
-        let reveal = SKTransition.doorway(withDuration: 1)
-        self.view?.presentScene(newScene, transition: reveal)
+        //find first level node
+        let touch = touches.first
+        if levelNode.contains((touch?.location(in: self))!)
+        {
+            
+            
+            let newScene = Level1Scene(size: self.size)
+            newScene.scaleMode = scaleMode
+            let reveal = SKTransition.doorway(withDuration: 1)
+            self.view?.presentScene(newScene, transition: reveal)
+            
+        }
+        
     }
     
     
