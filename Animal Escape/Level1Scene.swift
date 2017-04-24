@@ -21,10 +21,11 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
-        makeWall(wallHeight: 900, wallWidth: 40, xPosition: 70, yPosition: 650)
-        makeWall(wallHeight: 40, wallWidth: Double(frame.width - 100), xPosition: Double(frame.width / 2), yPosition: 200)
-        makeWall(wallHeight: 40, wallWidth: Double(frame.width - 100), xPosition: Double(frame.width / 2), yPosition: 1100)
-        makeWall(wallHeight: 900, wallWidth: 40, xPosition: Double(frame.maxX - 70), yPosition: 650)
+        makeWall(wallHeight: 800, wallWidth: 40, xPosition: 70, yPosition: 650)
+        makeWall(wallHeight: 40, wallWidth: Double(frame.width - 100), xPosition: Double(frame.width / 2), yPosition: 250)
+        makeWall(wallHeight: 40, wallWidth: Double(frame.width - 100), xPosition: Double(frame.width / 2), yPosition: 1050)
+        makeWall(wallHeight: 800, wallWidth: 40, xPosition: Double(frame.maxX - 70), yPosition: 650)
+        makeWinZone()
     }
     
     
@@ -43,8 +44,14 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     
     func makeWinZone()
     {
-        //winZone = SKSpriteNode(color: UIColor.red, size: CGSize(width: 40, height: 100)
-        //winZone.position
+        winZone = SKSpriteNode(color: UIColor.red, size: CGSize(width: 41, height: 100))
+        winZone.position = CGPoint(x: frame.maxX - 70, y: 750)
+        winZone.zPosition = 3
+        winZone.name = "winZone"
+        winZone.physicsBody = SKPhysicsBody(rectangleOf: winZone.size)
+        winZone.physicsBody?.isDynamic = false
+        
+        addChild(winZone)
     }
     
     

@@ -28,7 +28,7 @@ class LevelSelectScene: SKScene
         let screenEdge = Double(frame.midX - (frame.width / 2))
         var xPosition = Double(screenEdge + levelEdge + 50)
         var yPosition = 500.0
-        var levelNumber = 1
+        var levelNumber = 0
         
         for rows in 1...3
         {
@@ -59,7 +59,7 @@ class LevelSelectScene: SKScene
     {
         //find first level node
         let touch = touches.first
-        if levelNode.contains((touch?.location(in: self))!)
+        if levelNode.contains((touch?.location(in: self))!) && levelNode.name == "8"
         {
             
             
