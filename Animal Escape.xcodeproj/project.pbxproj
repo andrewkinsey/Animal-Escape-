@@ -19,7 +19,6 @@
 		C83BAA491EA510D400C179B1 /* Animal_EscapeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83BAA481EA510D400C179B1 /* Animal_EscapeUITests.swift */; };
 		C83BAA571EA516FB00C179B1 /* LevelSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83BAA561EA516FB00C179B1 /* LevelSelectScene.swift */; };
 		C8E380391EA7B7CE00389619 /* Level1Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E380381EA7B7CE00389619 /* Level1Scene.swift */; };
-		C8E3803D1EAE4DB000389619 /* Animals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E3803C1EAE4DB000389619 /* Animals.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +57,6 @@
 		C83BAA4A1EA510D400C179B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C83BAA561EA516FB00C179B1 /* LevelSelectScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectScene.swift; sourceTree = "<group>"; };
 		C8E380381EA7B7CE00389619 /* Level1Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level1Scene.swift; sourceTree = "<group>"; };
-		C8E3803C1EAE4DB000389619 /* Animals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animals.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +110,6 @@
 				C83BAA221EA510D300C179B1 /* AppDelegate.swift */,
 				C83BAA241EA510D300C179B1 /* GameScene.sks */,
 				C83BAA261EA510D300C179B1 /* Actions.sks */,
-				C8E3803C1EAE4DB000389619 /* Animals.swift */,
 				C83BAA281EA510D300C179B1 /* GameScene.swift */,
 				C83BAA561EA516FB00C179B1 /* LevelSelectScene.swift */,
 				C8E380381EA7B7CE00389619 /* Level1Scene.swift */,
@@ -283,7 +280,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83BAA291EA510D300C179B1 /* GameScene.swift in Sources */,
-				C8E3803D1EAE4DB000389619 /* Animals.swift in Sources */,
 				C83BAA2B1EA510D300C179B1 /* GameViewController.swift in Sources */,
 				C83BAA231EA510D300C179B1 /* AppDelegate.swift in Sources */,
 				C8E380391EA7B7CE00389619 /* Level1Scene.swift in Sources */,
