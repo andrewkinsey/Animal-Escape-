@@ -21,35 +21,19 @@ class LevelSelectScene: SKScene
 
     func makeLevelNodes()
     {
-        let levelWidth = (Double)((frame.width / 3) - 50)
-        let levelHeight = 175.0
-        
-        let levelEdge = Double(levelWidth / 2)
-        let screenEdge = Double(frame.midX - (frame.width / 2))
-        var xPosition = Double(screenEdge + levelEdge + 50)
-        var yPosition = 500.0
-        var levelNumber = 0
-        
-        for rows in 1...3
-        {
-            for columns in 1...3
-            {
-                makeLevelNode(xPoint: xPosition, yPoint: yPosition, levelWidth: levelWidth, levelHeight: levelHeight, levelNumber: levelNumber)
-                
-                xPosition += (levelWidth + 25)
-                levelNumber += 1
-                
-            }
-            xPosition = screenEdge + levelEdge + 50
-            yPosition += (levelHeight + 25)
-        }
-        
+        makeLevelNode(yPoint: Float(frame.maxY - 100), levelNumber: 1)
+        makeLevelNode(yPoint: Float(frame.maxY - 260), levelNumber: 2)
+        makeLevelNode(yPoint: Float(frame.maxY - 420), levelNumber: 3)
+        makeLevelNode(yPoint: Float(frame.maxY - 580), levelNumber: 4)
+        makeLevelNode(yPoint: Float(frame.maxY - 740), levelNumber: 5)
+        makeLevelNode(yPoint: Float(frame.maxY - 900), levelNumber: 6)
+        makeLevelNode(yPoint: Float(frame.maxY - 1060), levelNumber: 7)
     }
     
-    func makeLevelNode(xPoint: Double, yPoint: Double, levelWidth: Double, levelHeight: Double, levelNumber: Int)
+    func makeLevelNode(yPoint: Float, levelNumber: Int)
     {
-        levelNode = SKSpriteNode(color: UIColor.yellow, size: (CGSize(width: levelWidth, height: levelHeight)))
-        levelNode.position = CGPoint(x: xPoint, y: yPoint)
+        levelNode = SKSpriteNode(color: UIColor.yellow, size: (CGSize(width: 150, height: 150)))
+        levelNode.position = CGPoint(x: frame.midX, y: CGFloat(yPoint))
         levelNode.zPosition = 1
         levelNode.name = "\(levelNumber)"
         addChild(levelNode)
@@ -59,7 +43,7 @@ class LevelSelectScene: SKScene
     {
         //find first level node
         let touch = touches.first
-        if levelNode.contains((touch?.location(in: self))!) && levelNode.name == "8"
+        if levelNode.contains((touch?.location(in: self))!) && levelNode.name == "1"
         {
             
             
