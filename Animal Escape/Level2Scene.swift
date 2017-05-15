@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class Level1Scene: SKScene, SKPhysicsContactDelegate
+class Level2Scene: SKScene, SKPhysicsContactDelegate
 {
     
     var wall: SKSpriteNode!
@@ -20,33 +20,31 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     var winNotificationNode: SKLabelNode!
     var nextLevelNode: SKSpriteNode!
     var timerNode: SKLabelNode!
-    var background: SKSpriteNode!
-    var jungleBackground: SKSpriteNode!
     
     var giraffeNode: SKSpriteNode!
     var zebraNode: SKSpriteNode!
     var tigerNode: SKSpriteNode!
     var cheetahNode: SKSpriteNode!
-    var parrotNode: SKSpriteNode!
+    var eagleNode: SKSpriteNode!
     var snakeNode: SKSpriteNode!
     
     var time = 15
     
     override func didMove(to view: SKView)
     {
+        backgroundColor = UIColor.black
         physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        print(frame.width)
-        print(frame.height)
+        
         createGame()
     }
     
     
     
     
-//    
-//  movement and contact
-//    
+    //
+    //  movement and contact
+    //
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
@@ -61,27 +59,23 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         }
         if resetButton.contains((touch?.location(in: self))!)
         {
-            let newScene = Level1Scene(size: self.size)
-            newScene.scaleMode = scaleMode
-            let reveal = SKTransition.flipHorizontal(withDuration: 2)
-            self.view?.presentScene(newScene, transition: reveal)
+            resetGame()
         }
         if nextLevelNode.contains((touch?.location(in: self))!)
         {
-//            let newScene = Level2Scene(size: self.size)
-//            newScene.scaleMode = scaleMode
-//            let reveal = SKTransition.flipVertical(withDuration: 2)
-//            self.view?.presentScene(newScene, transition: reveal)
+            let newScene = Level2Scene(size: self.size)
+            newScene.scaleMode = scaleMode
+            let reveal = SKTransition.flipVertical(withDuration: 2)
+            self.view?.presentScene(newScene, transition: reveal)
         }
         
-        
-
     }
+    
+    
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         let touch = touches.first
-        
         
         
         if jeepNode.contains((touch?.location(in: self))!)
@@ -109,10 +103,10 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
             let location = touch?.location(in: self)
             cheetahNode.position.x = (location?.x)!
         }
-        if parrotNode.contains((touch?.location(in: self))!)
+        if eagleNode.contains((touch?.location(in: self))!)
         {
             let location = touch?.location(in: self)
-            parrotNode.position.y = (location?.y)!
+            eagleNode.position.y = (location?.y)!
         }
         if snakeNode.contains((touch?.location(in: self))!)
         {
@@ -139,10 +133,10 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
             resetGame()
         }
     }
-
-//
-//    end game and reset
-//    
+    
+    //
+    //    end game and reset
+    //
     
     func displayWinNode()
     {
@@ -165,16 +159,14 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     
     
     
-//    
-//    ˘Functions to set up level˘
-//    
+    //
+    //    ˘Functions to set up level˘
+    //
     
     
     func createGame()
     {
         makeWalls()
-        makeBackground()
-        makeJungleBackground()
         makeBackButton()
         makeNextLevelButton()
         makeResetButton()
@@ -185,7 +177,7 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         makeZebra(xPosition: 550, yPosition: 450)
         makeTiger(xPosition: 500, yPosition: 950)
         makeCheetah(xPosition: 360, yPosition: 450)
-        makeParrot(xPosition: 200, yPosition: 450)
+        makeEagle(xPosition: 200, yPosition: 450)
         makeSnake(xPosition: 250, yPosition: 950)
     }
     
@@ -194,12 +186,11 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     
     func makeTimer(time: String)
     {
-        timerNode = SKLabelNode(fontNamed: "DamascusSemiBold")
-        timerNode.text = "\(time)"
-        timerNode.position = CGPoint(x: frame.midX, y: frame.maxY - 140)
-        timerNode.fontSize = 130
-        timerNode.color = UIColor.black
-        timerNode.fontColor = UIColor.black
+        timerNode = SKLabelNode(text: time)
+        timerNode.position = CGPoint(x: frame.midX, y: frame.maxY - 130)
+        timerNode.fontSize = 100
+        timerNode.color = UIColor.white
+        timerNode.fontColor = UIColor.white
         timerNode.zPosition = 5
         
         addChild(timerNode)
@@ -208,44 +199,28 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     
     func startTimer()
     {
+        
         let wait = SKAction.wait(forDuration: 1.0)
-            let run = SKAction.run
+        let run = SKAction.run
+        {
+            self.time -= 1
+            
+            if self.time == 0
             {
-                self.time -= 1
-                
-                if self.time == 0
-                {
-                    self.resetGame()
-                }
-                else
-                {
+                self.resetGame()
+            }
+            else
+            {
                 self.timerNode.removeFromParent()
                 self.makeTimer(time: "\(self.time)")
-                }
             }
-            let sequence = SKAction.sequence([wait , run])
-            let moveForever = SKAction.repeatForever(sequence)
-            jeepNode.run(moveForever)
+        }
+        let sequence = SKAction.sequence([wait , run])
+        let moveForever = SKAction.repeatForever(sequence)
+        jeepNode.run(moveForever)
+        
     }
     
-    func makeBackground()
-    {
-        background = SKSpriteNode(color: UIColor.black, size: CGSize(width: 610, height: 800))
-        background.position = CGPoint(x: 375, y: 650)
-        background.zPosition = 1
-        
-        addChild(background)
-    }
-    
-    func makeJungleBackground()
-    {
-        jungleBackground = SKSpriteNode(texture: SKTexture(imageNamed: "jungleLeaves"))
-        jungleBackground.size = CGSize(width: 750, height: 1334)
-        jungleBackground.position = CGPoint(x: frame.width / 2, y: frame.height / 2)
-        jungleBackground.zPosition = 0.5
-        
-        addChild(jungleBackground)
-    }
     
     
     func makeWalls()
@@ -253,8 +228,7 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         makeWall(wallHeight: 800, wallWidth: 40, xPosition: 70, yPosition: 650)
         makeWall(wallHeight: 40, wallWidth: Double(frame.width - 100), xPosition: Double(frame.width / 2), yPosition: 250)
         makeWall(wallHeight: 40, wallWidth: Double(frame.width - 100), xPosition: Double(frame.width / 2), yPosition: 1050)
-        makeWall(wallHeight: 260, wallWidth: 40, xPosition: Double(frame.maxX - 70), yPosition: 940)
-        makeWall(wallHeight: 440, wallWidth: 40, xPosition: Double(frame.maxX - 70), yPosition: 490)
+        makeWall(wallHeight: 800, wallWidth: 40, xPosition: Double(frame.maxX - 70), yPosition: 650)
         makeWinZone()
     }
     
@@ -265,7 +239,7 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         wall.name = "wall"
         wall.physicsBody = SKPhysicsBody(rectangleOf: wall.size)
         wall.physicsBody?.isDynamic = false
-        wall.zPosition = 2
+        wall.zPosition = 1
         
         
         addChild(wall)
@@ -273,8 +247,8 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     
     func makeWinZone()
     {
-        winZone = SKSpriteNode(color: UIColor.red, size: CGSize(width: 40, height: 100))
-        winZone.position = CGPoint(x: frame.maxX - 70, y: 760)
+        winZone = SKSpriteNode(color: UIColor.red, size: CGSize(width: 47, height: 100))
+        winZone.position = CGPoint(x: frame.maxX - 70, y: 750)
         winZone.zPosition = 3
         winZone.name = "winZone"
         winZone.physicsBody = SKPhysicsBody(rectangleOf: winZone.size)
@@ -338,9 +312,9 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         addChild(jeepNode)
     }
     
-            //
-            // Functions to make animals
-            // 1 = 75
+    //
+    // Functions to make animals
+    // 1 = 75
     //Giraffe 1x3
     //Zebra 2x1
     //Tiger 2x1
@@ -364,7 +338,7 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         giraffeNode.physicsBody?.allowsRotation = false
         giraffeNode.physicsBody?.collisionBitMask = 1
         giraffeNode.physicsBody?.contactTestBitMask = (giraffeNode.physicsBody?.collisionBitMask)!
-
+        
         
         addChild(giraffeNode)
     }
@@ -383,7 +357,7 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         zebraNode.physicsBody?.allowsRotation = false
         zebraNode.physicsBody?.collisionBitMask = 1
         zebraNode.physicsBody?.contactTestBitMask = (zebraNode.physicsBody?.collisionBitMask)!
-
+        
         
         addChild(zebraNode)
     }
@@ -426,23 +400,23 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         addChild(cheetahNode)
     }
     
-    func makeParrot(xPosition: Double, yPosition: Double)
+    func makeEagle(xPosition: Double, yPosition: Double)
     {
-        parrotNode = SKSpriteNode(texture: SKTexture(imageNamed: "Parrot"))
-        parrotNode.size = CGSize(width: 75, height: 150)
-        parrotNode.position = CGPoint(x: xPosition, y: yPosition)
-        parrotNode.zPosition = 5
-        parrotNode.name = "Eagle"
-        parrotNode.physicsBody = SKPhysicsBody(rectangleOf: parrotNode.size)
-        parrotNode.physicsBody?.isDynamic = true
-        parrotNode.physicsBody?.affectedByGravity = false
-        parrotNode.physicsBody?.usesPreciseCollisionDetection = true
-        parrotNode.physicsBody?.allowsRotation = false
-        parrotNode.physicsBody?.collisionBitMask = 1
-        parrotNode.physicsBody?.contactTestBitMask = (parrotNode.physicsBody?.collisionBitMask)!
+        eagleNode = SKSpriteNode(texture: SKTexture(imageNamed: "Eagle"))
+        eagleNode.size = CGSize(width: 75, height: 150)
+        eagleNode.position = CGPoint(x: xPosition, y: yPosition)
+        eagleNode.zPosition = 5
+        eagleNode.name = "Eagle"
+        eagleNode.physicsBody = SKPhysicsBody(rectangleOf: eagleNode.size)
+        eagleNode.physicsBody?.isDynamic = true
+        eagleNode.physicsBody?.affectedByGravity = false
+        eagleNode.physicsBody?.usesPreciseCollisionDetection = true
+        eagleNode.physicsBody?.allowsRotation = false
+        eagleNode.physicsBody?.collisionBitMask = 1
+        eagleNode.physicsBody?.contactTestBitMask = (eagleNode.physicsBody?.collisionBitMask)!
         
         
-        addChild(parrotNode)
+        addChild(eagleNode)
     }
     
     func makeSnake(xPosition: Double, yPosition: Double)
@@ -463,7 +437,7 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         
         addChild(snakeNode)
     }
-
+    
     
     
     

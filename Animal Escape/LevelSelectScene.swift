@@ -130,37 +130,37 @@ class LevelSelectScene: SKScene
         }
         if levelNode3.contains((touch?.location(in: self))!)
         {
-//            let newScene = Level1Scene(size: self.size)
+//            let newScene = Level3Scene(size: self.size)
 //            newScene.scaleMode = scaleMode
-//            let reveal = SKTransition.doorway(withDuration: 1)
+//            let reveal = SKTransition.doorsOpenVertical(withDuration: 1)
 //            self.view?.presentScene(newScene, transition: reveal)
         }
         if levelNode4.contains((touch?.location(in: self))!)
         {
-//            let newScene = Level1Scene(size: self.size)
+//            let newScene = Level4Scene(size: self.size)
 //            newScene.scaleMode = scaleMode
-//            let reveal = SKTransition.doorway(withDuration: 1)
+//            let reveal = SKTransition.doorsOpenHorizontal(withDuration: 1)
 //            self.view?.presentScene(newScene, transition: reveal)
         }
         if levelNode5.contains((touch?.location(in: self))!)
         {
-//            let newScene = Level1Scene(size: self.size)
+//            let newScene = Level5Scene(size: self.size)
 //            newScene.scaleMode = scaleMode
-//            let reveal = SKTransition.doorway(withDuration: 1)
+//            let reveal = SKTransition.doorsOpenVertical(withDuration: 1)
 //            self.view?.presentScene(newScene, transition: reveal)
         }
         if levelNode6.contains((touch?.location(in: self))!)
         {
-//            let newScene = Level1Scene(size: self.size)
+//            let newScene = Level6Scene(size: self.size)
 //            newScene.scaleMode = scaleMode
-//            let reveal = SKTransition.doorway(withDuration: 1)
+//            let reveal = SKTransition.doorsOpenHorizontal(withDuration: 1)
 //            self.view?.presentScene(newScene, transition: reveal)
         }
         if levelNode7.contains((touch?.location(in: self))!)
         {
-//            let newScene = Level1Scene(size: self.size)
+//            let newScene = Level7Scene(size: self.size)
 //            newScene.scaleMode = scaleMode
-//            let reveal = SKTransition.doorway(withDuration: 1)
+//            let reveal = SKTransition.doorsOpenVertical(withDuration: 1)
 //            self.view?.presentScene(newScene, transition: reveal)
         }
         
