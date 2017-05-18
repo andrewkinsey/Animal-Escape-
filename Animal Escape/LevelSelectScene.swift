@@ -18,6 +18,7 @@ class LevelSelectScene: SKScene
     var levelNode5: SKSpriteNode!
     var levelNode6: SKSpriteNode!
     var levelNode7: SKSpriteNode!
+    var levelSelectNode: SKLabelNode!
 
 
     override func didMove(to view: SKView)
@@ -28,15 +29,28 @@ class LevelSelectScene: SKScene
 
     func makeLevelNodes()
     {
-        makeLevelNode1(yPoint: Float(frame.maxY - 190))
-        makeLevelNode2(yPoint: Float(frame.maxY - 350))
-        makeLevelNode3(yPoint: Float(frame.maxY - 510))
-        makeLevelNode4(yPoint: Float(frame.maxY - 670))
-        makeLevelNode5(yPoint: Float(frame.maxY - 830))
-        makeLevelNode6(yPoint: Float(frame.maxY - 990))
-        makeLevelNode7(yPoint: Float(frame.maxY - 1150))
+        makeLevelSelectNode()
+        
+        makeLevelNode1(yPoint: Float(frame.maxY - 290))
+        makeLevelNode2(yPoint: Float(frame.maxY - 450))
+        makeLevelNode3(yPoint: Float(frame.maxY - 610))
+        makeLevelNode4(yPoint: Float(frame.maxY - 770))
+        makeLevelNode5(yPoint: Float(frame.maxY - 930))
+        makeLevelNode6(yPoint: Float(frame.maxY - 1090))
+        makeLevelNode7(yPoint: Float(frame.maxY - 1250))
     }
     
+    
+    func makeLevelSelectNode()
+    {
+        levelSelectNode = SKLabelNode(fontNamed: "HelveticaNeue-Medium")
+        levelSelectNode.text = "Select a Level"
+        levelSelectNode.position = CGPoint(x: frame.width / 2, y: frame.maxY - 100)
+        levelSelectNode.fontSize = 70
+        levelSelectNode.fontColor = UIColor.black
+        
+        addChild(levelSelectNode)
+    }
     
     func makeLevelNode1(yPoint: Float)
     {
@@ -123,10 +137,10 @@ class LevelSelectScene: SKScene
         }
         if levelNode2.contains((touch?.location(in: self))!)
         {
-            let newScene = Level2Scene(size: self.size)
-            newScene.scaleMode = scaleMode
-            let reveal = SKTransition.doorsOpenHorizontal(withDuration: 1)
-            self.view?.presentScene(newScene, transition: reveal)
+//            let newScene = Level2Scene(size: self.size)
+//            newScene.scaleMode = scaleMode
+//            let reveal = SKTransition.doorsOpenHorizontal(withDuration: 1)
+//            self.view?.presentScene(newScene, transition: reveal)
         }
         if levelNode3.contains((touch?.location(in: self))!)
         {

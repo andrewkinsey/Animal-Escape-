@@ -22,6 +22,7 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     var timerNode: SKLabelNode!
     var background: SKSpriteNode!
     var jungleBackground: SKSpriteNode!
+    var winBackground: SKSpriteNode!
     
     var giraffeNode: SKSpriteNode!
     var zebraNode: SKSpriteNode!
@@ -61,10 +62,7 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         }
         if resetButton.contains((touch?.location(in: self))!)
         {
-            let newScene = Level1Scene(size: self.size)
-            newScene.scaleMode = scaleMode
-            let reveal = SKTransition.flipHorizontal(withDuration: 2)
-            self.view?.presentScene(newScene, transition: reveal)
+            resetGame()
         }
         if nextLevelNode.contains((touch?.location(in: self))!)
         {
@@ -131,6 +129,8 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         {
             jeepNode.physicsBody?.isDynamic = false
             print("win")
+            timerNode.removeFromParent()
+            makeWinBackground()
             displayWinNode()
             jeepNode.removeAllActions()
         }
@@ -146,10 +146,11 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     
     func displayWinNode()
     {
-        winNotificationNode = SKLabelNode(text: "You Won")
+        winNotificationNode = SKLabelNode(fontNamed: "Trebuchet-BoldItalic")
+        winNotificationNode.text = "You Won"
         winNotificationNode.fontColor = UIColor.red
-        winNotificationNode.fontSize = 100
-        winNotificationNode.position = CGPoint(x: frame.midX, y: frame.midY)
+        winNotificationNode.fontSize = 130
+        winNotificationNode.position = CGPoint(x: frame.midX, y: frame.maxY - 170)
         winNotificationNode.zPosition = 30
         
         addChild(winNotificationNode)
@@ -157,9 +158,10 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     
     func resetGame()
     {
-        time = 15
-        removeAllChildren()
-        createGame()
+        let newScene = Level1Scene(size: self.size)
+        newScene.scaleMode = scaleMode
+        let reveal = SKTransition.flipHorizontal(withDuration: 2)
+        self.view?.presentScene(newScene, transition: reveal)
     }
     
     
@@ -182,11 +184,11 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         makeTimer(time: "\(time)")
         startTimer()
         makeGiraffe(xPosition: 500, yPosition: 760)
-        makeZebra(xPosition: 550, yPosition: 450)
+        makeZebra(xPosition: 550, yPosition: 470)
         makeTiger(xPosition: 500, yPosition: 950)
-        makeCheetah(xPosition: 360, yPosition: 450)
+        makeCheetah(xPosition: 360, yPosition: 470)
         makeParrot(xPosition: 200, yPosition: 450)
-        makeSnake(xPosition: 250, yPosition: 950)
+        makeSnake(xPosition: 250, yPosition: 600)
     }
     
     
@@ -228,6 +230,15 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
             jeepNode.run(moveForever)
     }
     
+    func makeWinBackground()
+    {
+        winBackground = SKSpriteNode(color: UIColor.black, size: CGSize(width: 610, height: 150))
+        winBackground.position = CGPoint(x: frame.midX, y: frame.maxY - 125)
+        winBackground.zPosition = 1
+        
+        addChild(winBackground)
+    }
+    
     func makeBackground()
     {
         background = SKSpriteNode(color: UIColor.black, size: CGSize(width: 610, height: 800))
@@ -253,8 +264,8 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         makeWall(wallHeight: 800, wallWidth: 40, xPosition: 70, yPosition: 650)
         makeWall(wallHeight: 40, wallWidth: Double(frame.width - 100), xPosition: Double(frame.width / 2), yPosition: 250)
         makeWall(wallHeight: 40, wallWidth: Double(frame.width - 100), xPosition: Double(frame.width / 2), yPosition: 1050)
-        makeWall(wallHeight: 260, wallWidth: 40, xPosition: Double(frame.maxX - 70), yPosition: 940)
-        makeWall(wallHeight: 440, wallWidth: 40, xPosition: Double(frame.maxX - 70), yPosition: 490)
+        makeWall(wallHeight: 250, wallWidth: 40, xPosition: Double(frame.maxX - 70), yPosition: 945)
+        makeWall(wallHeight: 455, wallWidth: 40, xPosition: Double(frame.maxX - 70), yPosition: 495)
         makeWinZone()
     }
     
@@ -273,8 +284,8 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     
     func makeWinZone()
     {
-        winZone = SKSpriteNode(color: UIColor.red, size: CGSize(width: 40, height: 100))
-        winZone.position = CGPoint(x: frame.maxX - 70, y: 760)
+        winZone = SKSpriteNode(color: UIColor.white, size: CGSize(width: 40, height: 100))
+        winZone.position = CGPoint(x: frame.maxX - 70, y: 770)
         winZone.zPosition = 3
         winZone.name = "winZone"
         winZone.physicsBody = SKPhysicsBody(rectangleOf: winZone.size)
@@ -321,7 +332,7 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     {
         jeepNode = SKSpriteNode(texture: SKTexture(imageNamed: "Jeep"))
         jeepNode.size = CGSize(width: 150, height: 75)
-        jeepNode.position = CGPoint(x: 200, y: 760)
+        jeepNode.position = CGPoint(x: 200, y: 770)
         jeepNode.zPosition = 5
         jeepNode.name = "jeep"
         

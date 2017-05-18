@@ -25,19 +25,20 @@ class GameScene: SKScene
     
     func makeTitleScreen()
     {
-        titleNode = SKLabelNode()
+        titleNode = SKLabelNode(fontNamed: "Optima-ExtraBlack")
         titleNode.text = "Animal Escape!"
         titleNode.fontColor = UIColor.red
-        titleNode.fontSize = 100
+        titleNode.fontSize = 95
         titleNode.zPosition = 1
-        titleNode.position = CGPoint(x: 0, y: 35)
+        titleNode.position = CGPoint(x: 0, y: 50)
         
         
-        continueLabel = SKLabelNode(text: "Touch Anywhere to Continue")
-        continueLabel.fontSize = 60
+        continueLabel = SKLabelNode(fontNamed: "HelveticaNeue-Medium")
+        continueLabel.text = "Touch Anywhere to Continue"
+        continueLabel.fontSize = 50
         continueLabel.fontColor = UIColor.white
         continueLabel.zPosition = 1
-        continueLabel.position = CGPoint(x: 0, y: -40)
+        continueLabel.position = CGPoint(x: 0, y: -50)
         
         addChild(continueLabel)
         addChild(titleNode)
