@@ -1,5 +1,5 @@
 //
-//  Level2Scene.swift
+//  Level5Scene.swift
 //  Animal Escape
 //
 //  Created by Andrew James Kinsey on 5/19/17.
@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class Level2Scene: SKScene, SKPhysicsContactDelegate
+class Level5Scene: SKScene, SKPhysicsContactDelegate
 {
     
     var wall: SKSpriteNode!
@@ -66,10 +66,10 @@ class Level2Scene: SKScene, SKPhysicsContactDelegate
         }
         if nextLevelNode.contains((touch?.location(in: self))!)
         {
-                        let newScene = Level3Scene(size: self.size)
-                        newScene.scaleMode = scaleMode
-                        let reveal = SKTransition.flipVertical(withDuration: 2)
-                        self.view?.presentScene(newScene, transition: reveal)
+            let newScene = Level6Scene(size: self.size)
+            newScene.scaleMode = scaleMode
+            let reveal = SKTransition.flipVertical(withDuration: 2)
+            self.view?.presentScene(newScene, transition: reveal)
         }
         
         
@@ -92,21 +92,21 @@ class Level2Scene: SKScene, SKPhysicsContactDelegate
             let location = touch?.location(in: self)
             giraffeNode.position.y = (location?.y)!
         }
-//        if zebraNode.contains((touch?.location(in: self))!)
-//        {
-//            let location = touch?.location(in: self)
-//            zebraNode.position.x = (location?.x)!
-//        }
-//        if tigerNode.contains((touch?.location(in: self))!)
-//        {
-//            let location = touch?.location(in: self)
-//            tigerNode.position.x = (location?.x)!
-//        }
-//        if cheetahNode.contains((touch?.location(in: self))!)
-//        {
-//            let location = touch?.location(in: self)
-//            cheetahNode.position.x = (location?.x)!
-//        }
+        if zebraNode.contains((touch?.location(in: self))!)
+        {
+            let location = touch?.location(in: self)
+            zebraNode.position.x = (location?.x)!
+        }
+        if tigerNode.contains((touch?.location(in: self))!)
+        {
+            let location = touch?.location(in: self)
+            tigerNode.position.x = (location?.x)!
+        }
+        if cheetahNode.contains((touch?.location(in: self))!)
+        {
+            let location = touch?.location(in: self)
+            cheetahNode.position.x = (location?.x)!
+        }
         if parrotNode.contains((touch?.location(in: self))!)
         {
             let location = touch?.location(in: self)
@@ -158,7 +158,7 @@ class Level2Scene: SKScene, SKPhysicsContactDelegate
     
     func resetGame()
     {
-        let newScene = Level2Scene(size: self.size)
+        let newScene = Level5Scene(size: self.size)
         newScene.scaleMode = scaleMode
         let reveal = SKTransition.flipHorizontal(withDuration: 2)
         self.view?.presentScene(newScene, transition: reveal)
@@ -183,12 +183,12 @@ class Level2Scene: SKScene, SKPhysicsContactDelegate
         makeJeep()
         makeTimer(time: "\(time)")
         startTimer()
-        makeGiraffe(xPosition: 450, yPosition: 760)
-//        makeZebra(xPosition: 550, yPosition: 470)
-//        makeTiger(xPosition: 500, yPosition: 950)
-//        makeCheetah(xPosition: 360, yPosition: 470)
-        makeParrot(xPosition: 200, yPosition: 550)
-        makeSnake(xPosition: 400, yPosition: 550)
+        makeGiraffe(xPosition: 500, yPosition: 760)
+        makeZebra(xPosition: 500, yPosition: 330)
+        makeTiger(xPosition: 500, yPosition: 950)
+        makeCheetah(xPosition: 300, yPosition: 330)
+        makeParrot(xPosition: 500, yPosition: 470)
+        makeSnake(xPosition: 500, yPosition: 600)
     }
     
     
@@ -480,4 +480,3 @@ class Level2Scene: SKScene, SKPhysicsContactDelegate
     
     
 }
-

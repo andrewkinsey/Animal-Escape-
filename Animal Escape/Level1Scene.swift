@@ -66,10 +66,10 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         }
         if nextLevelNode.contains((touch?.location(in: self))!)
         {
-//            let newScene = Level2Scene(size: self.size)
-//            newScene.scaleMode = scaleMode
-//            let reveal = SKTransition.flipVertical(withDuration: 2)
-//            self.view?.presentScene(newScene, transition: reveal)
+            let newScene = Level2Scene(size: self.size)
+            newScene.scaleMode = scaleMode
+            let reveal = SKTransition.flipVertical(withDuration: 2)
+            self.view?.presentScene(newScene, transition: reveal)
         }
         
         
@@ -102,21 +102,21 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
             let location = touch?.location(in: self)
             tigerNode.position.x = (location?.x)!
         }
-        if cheetahNode.contains((touch?.location(in: self))!)
-        {
-            let location = touch?.location(in: self)
-            cheetahNode.position.x = (location?.x)!
-        }
-        if parrotNode.contains((touch?.location(in: self))!)
-        {
-            let location = touch?.location(in: self)
-            parrotNode.position.y = (location?.y)!
-        }
-        if snakeNode.contains((touch?.location(in: self))!)
-        {
-            let location = touch?.location(in: self)
-            snakeNode.position.x = (location?.x)!
-        }
+//        if cheetahNode.contains((touch?.location(in: self))!)
+//        {
+//            let location = touch?.location(in: self)
+//            cheetahNode.position.x = (location?.x)!
+//        }
+//        if parrotNode.contains((touch?.location(in: self))!)
+//        {
+//            let location = touch?.location(in: self)
+//            parrotNode.position.y = (location?.y)!
+//        }
+//        if snakeNode.contains((touch?.location(in: self))!)
+//        {
+//            let location = touch?.location(in: self)
+//            snakeNode.position.x = (location?.x)!
+//        }
     }
     
     
@@ -183,12 +183,12 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
         makeJeep()
         makeTimer(time: "\(time)")
         startTimer()
-        makeGiraffe(xPosition: 500, yPosition: 760)
-        makeZebra(xPosition: 550, yPosition: 470)
-        makeTiger(xPosition: 500, yPosition: 950)
-        makeCheetah(xPosition: 360, yPosition: 470)
-        makeParrot(xPosition: 200, yPosition: 450)
-        makeSnake(xPosition: 250, yPosition: 600)
+        makeGiraffe(xPosition: 400, yPosition: 760)
+        makeZebra(xPosition: 450, yPosition: 550)
+        makeTiger(xPosition: 250, yPosition: 550)
+//        makeCheetah(xPosition: 360, yPosition: 470)
+//        makeParrot(xPosition: 200, yPosition: 450)
+//        makeSnake(xPosition: 250, yPosition: 600)
     }
     
     
@@ -320,7 +320,7 @@ class Level1Scene: SKScene, SKPhysicsContactDelegate
     func makeResetButton()
     {
         resetButton = SKSpriteNode(texture: SKTexture(imageNamed: "Reset"))
-        resetButton.size = CGSize(width: 150, height: 150)
+        resetButton.size = CGSize(width: 125, height: 125)
         resetButton.position = CGPoint(x: frame.midX , y: frame.minY + 125)
         resetButton.zPosition = 5
         resetButton.name = "resetButton"
